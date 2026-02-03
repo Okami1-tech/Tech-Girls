@@ -1,0 +1,556 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OR-RAYVA - Fashion for Gamers</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --black: #0a0a0a;
+            --charcoal: #1a1a1a;
+            --dark-grey: #2a2a2a;
+            --neon-green: #00ff41;
+            --neon-red: #ff2a6d;
+            --white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--black);
+            color: var(--white);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Glitch effect */
+        @keyframes glitch {
+            0% { transform: translate(0); }
+            20% { transform: translate(-2px, 2px); }
+            40% { transform: translate(-2px, -2px); }
+            60% { transform: translate(2px, 2px); }
+            80% { transform: translate(2px, -2px); }
+            100% { transform: translate(0); }
+        }
+
+        .glitch {
+            position: relative;
+        }
+
+        .glitch::before,
+        .glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .glitch::before {
+            left: 2px;
+            text-shadow: -2px 0 var(--neon-red);
+            clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
+            animation: glitch 3s infinite linear alternate-reverse;
+        }
+
+        .glitch::after {
+            left: -2px;
+            text-shadow: -2px 0 var(--neon-green);
+            clip-path: polygon(0 60%, 100% 60%, 100% 100%, 0 100%);
+            animation: glitch 2s infinite linear alternate-reverse;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(rgba(10, 10, 10, 0.8), rgba(10, 10, 10, 0.9)), 
+                        radial-gradient(circle at 20% 50%, rgba(0, 255, 65, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, rgba(255, 42, 109, 0.1) 0%, transparent 50%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="0.5" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="0.5" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            opacity: 0.3;
+            pointer-events: none;
+        }
+
+        .hero h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(4rem, 8vw, 8rem);
+            font-weight: 900;
+            margin-bottom: 1rem;
+            letter-spacing: -2px;
+            text-transform: uppercase;
+        }
+
+        .hero p {
+            font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+            margin-bottom: 3rem;
+            opacity: 0.8;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border: 2px solid;
+            background: transparent;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary {
+            border-color: var(--neon-green);
+            color: var(--neon-green);
+        }
+
+        .btn-secondary {
+            border-color: var(--neon-red);
+            color: var(--neon-red);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 20px currentColor;
+        }
+
+        /* Section styling */
+        section {
+            padding: 8rem 0;
+        }
+
+        .section-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            text-align: center;
+            margin-bottom: 4rem;
+            color: var(--neon-green);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .brand-story {
+            background-color: var(--charcoal);
+        }
+
+        .story-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .story-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .philosophy {
+            background: linear-gradient(to bottom, var(--black), var(--charcoal));
+        }
+
+        .philosophy-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .philosophy-text h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2rem;
+            color: var(--neon-red);
+            margin-bottom: 2rem;
+        }
+
+        .philosophy-text ul {
+            list-style: none;
+        }
+
+        .philosophy-text li {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .philosophy-text li::before {
+            content: '▶';
+            color: var(--neon-green);
+            position: absolute;
+            left: 0;
+        }
+
+        .featured-pieces {
+            background-color: var(--charcoal);
+        }
+
+        .pieces-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .piece-card {
+            background: var(--dark-grey);
+            padding: 2rem;
+            border: 1px solid var(--neon-green);
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .piece-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 255, 65, 0.2);
+            border-color: var(--neon-red);
+        }
+
+        .piece-name {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            color: var(--neon-green);
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+        }
+
+        .piece-desc {
+            font-size: 1rem;
+            opacity: 0.8;
+        }
+
+        .culture {
+            background: linear-gradient(to bottom, var(--charcoal), var(--black));
+        }
+
+        .culture-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+            text-align: center;
+        }
+
+        .culture-item {
+            padding: 2rem;
+        }
+
+        .culture-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--neon-green);
+        }
+
+        .culture-text {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .designer-note {
+            background-color: var(--black);
+            text-align: center;
+        }
+
+        .note-content {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .designer-note blockquote {
+            font-size: 1.3rem;
+            font-style: italic;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .designer-note blockquote::before,
+        .designer-note blockquote::after {
+            content: '"';
+            font-size: 2rem;
+            color: var(--neon-green);
+            opacity: 0.5;
+        }
+
+        .footer {
+            background-color: var(--charcoal);
+            padding: 4rem 0 2rem;
+            text-align: center;
+        }
+
+        .footer-brand {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2rem;
+            color: var(--neon-green);
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+        }
+
+        .footer-tagline {
+            opacity: 0.7;
+            margin-bottom: 2rem;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        .social-link {
+            color: var(--white);
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            color: var(--neon-green);
+            transform: translateY(-2px);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: clamp(2.5rem, 10vw, 4rem);
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .philosophy-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .section-title {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1 class="glitch" data-text="OR-RAYVA IS A MODE.">OR-RAYVA IS A MODE.</h1>
+            <p>Fashion powered by games, phonk, and the mentality to win.</p>
+            <div class="cta-buttons">
+                <button class="btn btn-primary">Explore the Vision</button>
+                <button class="btn btn-secondary">View Concepts</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Brand Story -->
+    <section class="brand-story">
+        <div class="container">
+            <h2 class="section-title">THE OR-RAYVA MINDSET</h2>
+            <div class="story-content">
+                <p>OR-RAYVA is built from gaming focus, phonk intensity, and football discipline.</p>
+                <p>It represents control, movement, and pressure. Designed for people who don't move like everyone else.</p>
+                <p>We fuse streetwear with high fashion, creating pieces that perform like a playable character in the game of life.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Design Philosophy -->
+    <section class="philosophy">
+        <div class="container">
+            <h2 class="section-title">DESIGN PHILOSOPHY</h2>
+            <div class="philosophy-grid">
+                <div class="philosophy-text">
+                    <h3>BUILT FOR DOMINANCE</h3>
+                    <ul>
+                        <li>Designed like a playable character</li>
+                        <li>Built for motion and performance</li>
+                        <li>Dark energy translated into fabric and cuts</li>
+                        <li>Sharp, minimal, aggressive silhouettes</li>
+                        <li>Every piece is a weapon of self-expression</li>
+                        <li>Movement-focused design philosophy</li>
+                    </ul>
+                </div>
+                <div class="philosophy-visual">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400' viewBox='0 0 400 400'%3E%3Crect width='400' height='400' fill='%231a1a1a'/%3E%3Cpath d='M100,100 L300,100 L300,300 L100,300 Z' fill='none' stroke='%2300ff41' stroke-width='2'/%3E%3Cpath d='M150,150 L250,150 L250,250 L150,250 Z' fill='none' stroke='%23ff2a6d' stroke-width='2'/%3E%3C/svg%3E" alt="Design Concept" style="width: 100%; border-radius: 4px;">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Pieces -->
+    <section class="featured-pieces">
+        <div class="container">
+            <h2 class="section-title">FEATURED CONCEPTS</h2>
+            <div class="pieces-grid">
+                <div class="piece-card">
+                    <h3 class="piece-name">OR-RAYVA: STRIKER</h3>
+                    <p class="piece-desc">Aggressive cuts for dominant movement.</p>
+                </div>
+                <div class="piece-card">
+                    <h3 class="piece-name">OR-RAYVA: NIGHT MODE</h3>
+                    <p class="piece-desc">Dark energy in wearable form.</p>
+                </div>
+                <div class="piece-card">
+                    <h3 class="piece-name">OR-RAYVA: FINAL FORM</h3>
+                    <p class="piece-desc">Evolution through pressure.</p>
+                </div>
+                <div class="piece-card">
+                    <h3 class="piece-name">OR-RAYVA: GLITCH</h3>
+                    <p class="piece-desc">Perfectly imperfect execution.</p>
+                </div>
+                <div class="piece-card">
+                    <h3 class="piece-name">OR-RAYVA: DOMINION</h3>
+                    <p class="piece-desc">Control through confidence.</p>
+                </div>
+                <div class="piece-card">
+                    <h3 class="piece-name">OR-RAYVA: PHANTOM</h3>
+                    <p class="piece-desc">Invisible until it strikes.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Culture & Influence -->
+    <section class="culture">
+        <div class="container">
+            <h2 class="section-title">CULTURE & INFLUENCE</h2>
+            <div class="culture-grid">
+                <div class="culture-item">
+                    <div class="culture-icon">🎮</div>
+                    <div class="culture-text">GAMING</div>
+                </div>
+                <div class="culture-item">
+                    <div class="culture-icon">🎵</div>
+                    <div class="culture-text">PHONK</div>
+                </div>
+                <div class="culture-item">
+                    <div class="culture-icon">⚽</div>
+                    <div class="culture-text">FOOTBALL</div>
+                </div>
+                <div class="culture-item">
+                    <div class="culture-icon">🏙️</div>
+                    <div class="culture-text">STREET</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Designer Note -->
+    <section class="designer-note">
+        <div class="container">
+            <h2 class="section-title">DESIGNER NOTE</h2>
+            <div class="note-content">
+                <blockquote>
+                    OR-RAYVA exists because fashion needs the same energy as gaming - focus, precision, and the will to dominate. I create for those who see themselves as playable characters in their own story.
+                </blockquote>
+                <p>- The Designer</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-brand">OR-RAYVA</div>
+            <div class="footer-tagline">Designed for those who move in a different mode.</div>
+            <div class="social-icons">
+                <a href="#" class="social-link">IG</a>
+                <a href="#" class="social-link">TT</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Hover effects
+        document.querySelectorAll('.piece-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.borderColor = getComputedStyle(this).getPropertyValue('--neon-red');
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.borderColor = getComputedStyle(this).getPropertyValue('--neon-green');
+            });
+        });
+
+        // Button hover effects
+        document.querySelectorAll('.btn').forEach(btn => {
+            btn.addEventListener('mouseenter', function() {
+                this.style.boxShadow = '0 0 20px ' + getComputedStyle(this).color;
+            });
+            
+            btn.addEventListener('mouseleave', function() {
+                this.style.boxShadow = 'none';
+            });
+        });
+
+        // Add subtle scroll animations
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('section');
+            sections.forEach(section => {
+                const rect = section.getBoundingClientRect();
+                if (rect.top < window.innerHeight * 0.75) {
+                    section.style.opacity = '1';
+                    section.style.transform = 'translateY(0)';
+                }
+            });
+        });
+
+        // Initialize sections with animation properties
+        document.querySelectorAll('section').forEach(section => {
+            section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(30px)';
+        });
+    </script>
+</body>
+</html>
+```
